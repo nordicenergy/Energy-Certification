@@ -1,0 +1,86 @@
+import {
+  Nordic EnergyCoinContract,
+  productionContract,
+  parentContract,
+  childContract,
+} from './contracts.js';
+
+const $ = require("jquery");
+
+// producer accounts list
+function producerList() {
+  productionContract.methods.getProAccntsList().call(function(error, result) {
+    if (!error) {
+      result.shift();
+      for (var i = 0; i < result.length; i++) {
+        $("#proAccountList").prepend("<li>" + result[i] + "</li>");
+      }
+    } else {
+      console.log(error);
+    }
+  })
+}
+
+// function totalSupply(){
+//   Nordic EnergyCoinContract.getTotalSupply(function (error, result) {
+//     if(!error){
+//       $('#totalSuppy').html(result);
+//     } else {
+//       console.log(error);
+//     }
+//   })
+// }
+
+// individual producer account details table
+$('#proAccountList').click(activateProAccnt);
+
+function activateProAccnt(e) {
+  if (e.target.nodeName == 'LI') {
+
+    // getting balance of current Producer
+    // setInterval(function () {
+    //
+    //   Nordic EnergyCoinContract.balanceOf(e.target.innerHTML, function (error, result) {
+    //     if (!error) {
+    //       $('#proCoinBalance').html(result.c[0]);
+    //     }else {
+    //       console.log(error);
+    //     }
+    //   })
+    //
+    // }, 3000);
+
+    // get registration details for individual account
+    productionContract.methods.getProAccntDetails($(e.target).html()).call(function(error, result) {
+      if (error) {
+        console.log(error);
+      } else {
+        $('#proOwner').html(result[0]);
+        $('#proDeviceType').html(result[1]);
+        $('#proPeakPower').html(result[2]);
+        $('#proLocationType').html(result[3]);
+        $('#proLat').html(result[4] / 10000);
+        $('#proLon').html(result[5] / 10000);
+        $('#proInstallDate').html(result[6]);
+      }
+    });
+
+    // total amount of energy produced by individual producer
+    productionContract.methods.getProBalance($(e.target).html()).call(function(error, result) {
+      if (!error) {
+        $('#proAccntBalance').html(result);
+      } else {
+        console.log(error);
+      }
+    });
+
+    // removing the background color for ul-selected items
+    for (var i = 0; i < e.target.parentNode.children.length; i++) {
+      e.target.parentNode.children[i].classList.remove('active');
+    }
+    // adding background color to active item
+    $(e.target).addClass('active');
+  }
+}
+
+producerList();

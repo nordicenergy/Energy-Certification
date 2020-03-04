@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nordic Energy Web3 Browser</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark nav-color pb-3">
+
+    <a class="navbar-brand" href="https://www.certificates.nordicenergy.io/" target="_blank">Nordic Energy Systems</a>
+    <!-- menu items -->
+    <button class="navbar-toggler" type="button" data-toggle='collapse' data-target='#navbarSupportedContent'>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./certification.html" target="_blank">Energy Certification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./bgm.html" target="_blank">BGM Mockup</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="user-input">
+      <input id="contract-address" type="text" placeholder="please type smart contract address" autofocus>
+      <span class="fas fa-search fa-3x search-icon" id="search-button"></span>
+    </div>
+
+    <div class="sampleAddress">
+      <p>Example addresses: <br />
+        0xB35ade92c443B3b111ddA47C6af8872110fB7a03<br />
+        0xB35ade92c443B3b111ddA47C6af8872110fB7a03</p>
+    </div>
+
+    <div class="infographics remove" id="infographics-div">
+      <h5 class="infographics-headings"> Smart Contract:
+        <span id="smart-contract" class="infographics-headings-span"></span>
+      </h5>
+
+      <h5 class="infographics-headings"> Start Block:
+        <span id="start-block" class="infographics-headings-span"></span>
+      </h5>
+
+      <h5 class="infographics-headings"> End Block:
+        <span id="end-block" class="infographics-headings-span"></span>
+      </h5>
+    </div>
+
+    <div class="display-data remove" id="display-data-div">
+      <div class="display-data-col">
+        <ol id="txHashes">
+        </ol>
+      </div>
+
+      <div class="transaction-object display-data-col">
+        <pre id="txObject">
+          </pre>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="./js/explorer.bundle.js"></script></body>
+</body>
+
+</html>
